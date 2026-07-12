@@ -1,0 +1,86 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Apollo.io
+providerId: apollo-enrich
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Contact Discovery
+- Data Enrichment
+- Sales Intelligence
+- Rate Limiting
+- Quotas
+description: >-
+  Apollo applies a fixed-window rate limiting strategy to API calls, and the
+  applicable limits are determined by your Apollo pricing plan (higher tiers get
+  higher limits). Apollo's documentation illustrates the model with a team that
+  has a 200 requests-per-minute allowance distributing those calls across any
+  interval within the 60-second window. Apollo does not publish a single fixed
+  per-endpoint number for all customers; instead it exposes a "View API Usage
+  Stats and Rate Limits" endpoint and a developer dashboard where you can read
+  your account's current per-minute, per-hour, and per-day limits and remaining
+  quota. Separately from request-rate limits, most data endpoints consume
+  Apollo credits (email, mobile, export) which are capped by plan.
+notes: >-
+  Specific numeric per-minute / per-hour / per-day limits vary per plan and are
+  not universally published; call the API usage stats / rate limits endpoint or
+  check the developer dashboard for your account's exact numbers. Credit
+  consumption (per enriched person record, per search page for company search)
+  is a separate constraint from the request-rate limit. Verify at
+  developer.apollo.io during reconciliation.
+sources:
+- https://docs.apollo.io/reference/rate-limits
+- https://developer.apollo.io/
+- https://docs.apollo.io/reference/people-api-search
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests (per minute)
+  scope: account
+  metric: requests
+  limit: per plan (fixed-window; e.g. 200/min on some plans)
+  window: minute
+  notes: Fixed-window per-minute allowance; exact value depends on plan tier.
+- name: API Requests (per hour)
+  scope: account
+  metric: requests
+  limit: per plan
+  window: hour
+  notes: Reported via the API usage stats / rate limits endpoint.
+- name: API Requests (per day)
+  scope: account
+  metric: requests
+  limit: per plan
+  window: day
+  notes: Reported via the API usage stats / rate limits endpoint.
+- name: Search Pagination Ceiling
+  scope: request
+  metric: records
+  limit: 50000 (100 per page, up to 500 pages)
+  notes: People Search and Organization Search cap displayed results at 50,000 records.
+- name: Bulk Enrichment Batch
+  scope: request
+  metric: records
+  limit: 10 per call
+  notes: Bulk People and Bulk Organization enrichment accept up to ten records per request.
+- name: Company Domains Filter
+  scope: request
+  metric: domains
+  limit: 1000 per request
+  notes: q_organization_domains_list accepts up to 1,000 company domains per search request.
+policies:
+- name: Fixed-Window Rate Limiting
+  description: Apollo counts requests within a fixed time window (per minute/hour/day); once the window's allowance is used, further calls are throttled until the window resets.
+- name: Plan-Based Limits
+  description: Rate limits scale with plan tier; higher plans and Enterprise agreements receive larger allowances.
+- name: Usage Visibility
+  description: Query the View API Usage Stats and Rate Limits endpoint or the developer dashboard to read current limits and remaining quota.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on 429 responses and spread calls across the window rather than bursting.
+- name: Credit Consumption
+  description: Enrichment and search consume Apollo credits independent of request-rate limits; monitor credit balances to avoid data being withheld.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,100 @@
+aid: apollo-enrich
+name: Apollo.io
+review:
+  question: Does Apollo.io expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Apollo's public API surface at
+    https://api.apollo.io/api/v1 is entirely request/response REST over HTTPS,
+    authenticated with an `x-api-key` header. There is no server-push transport
+    (WebSocket or SSE) on Apollo's own API to model. Apollo does support
+    outbound webhooks for asynchronous results (for example, phone-number and
+    waterfall enrichment return results to a caller-supplied `webhook_url`), but
+    a webhook is a server-to-endpoint HTTP callback, not a WebSocket, and the
+    endpoint is owned by the consumer rather than published by Apollo.
+findings:
+  summary: |
+    Apollo.io does not publish a documented public WebSocket API. Apollo is a
+    sales intelligence and engagement platform whose public REST API (base
+    https://api.apollo.io/api/v1) covers People Enrichment (match / bulk_match),
+    People Search, Organization Enrichment and Search, Contacts, Accounts, and
+    Sequences (emailer campaigns). Every documented endpoint is HTTPS REST
+    authenticated with an `x-api-key` header; some endpoints (for example People
+    Search) additionally require a key marked as a master key. Long-running or
+    reveal operations (phone number reveal, waterfall enrichment) deliver
+    results asynchronously to a consumer-provided `webhook_url`. No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented anywhere in Apollo's API reference as of the review date.
+  accessModel: |
+    Apollo's API is real and documented, but access is gated by plan. The Free
+    and Basic plans do NOT include API access - all interaction is manual in the
+    app. Programmatic API access begins on the Professional plan and continues
+    on Organization and Enterprise. Data endpoints also consume Apollo credits
+    (email, mobile, export) per action. This entry documents the public API
+    surface; exercising it requires a paid, API-enabled plan and a valid key.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.apollo.io/api/v1
+      documented: true
+      note: All People, Organization, Contact, Account, and Sequence endpoints are request/response REST over HTTPS with an x-api-key header.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Asynchronous enrichment results (phone reveal, waterfall) are POSTed to a consumer-supplied webhook_url. Server-to-endpoint HTTP callback, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Apollo's API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.apollo.io/api/v1/people/match
+    - POST https://api.apollo.io/api/v1/people/bulk_match
+    - POST https://api.apollo.io/api/v1/mixed_people/api_search
+    - GET  https://api.apollo.io/api/v1/organizations/enrich
+    - POST https://api.apollo.io/api/v1/organizations/bulk_enrich
+    - POST https://api.apollo.io/api/v1/mixed_companies/search
+    - POST https://api.apollo.io/api/v1/contacts/search
+    - POST https://api.apollo.io/api/v1/contacts
+    - PUT  https://api.apollo.io/api/v1/contacts/{id}
+    - POST https://api.apollo.io/api/v1/accounts/search
+    - POST https://api.apollo.io/api/v1/accounts
+    - PUT  https://api.apollo.io/api/v1/accounts/{id}
+    - POST https://api.apollo.io/api/v1/emailer_campaigns/search
+    - POST https://api.apollo.io/api/v1/emailer_campaigns/{id}/add_contact_ids
+  endpointsModeled:
+    - POST https://api.apollo.io/api/v1/organizations/bulk_enrich
+    - POST https://api.apollo.io/api/v1/emailer_campaigns/search
+    - Bulk contact/account create paths and Organization Job Postings path are documented by name but exact request shapes were not fully retrieved; treat schemas as modeled.
+sources:
+  - url: https://docs.apollo.io/reference/authentication
+    type: Documentation
+    note: Authentication uses the x-api-key header; no WebSocket mentioned.
+  - url: https://docs.apollo.io/reference/people-api-search
+    type: APIReference
+    note: POST /mixed_people/api_search; requires master API key; REST only.
+  - url: https://docs.apollo.io/reference/people-enrichment
+    type: APIReference
+    note: POST /people/match; webhook_url used for async phone/waterfall reveal, not WebSocket.
+  - url: https://docs.apollo.io/reference/organization-search
+    type: APIReference
+    note: POST /mixed_companies/search; REST only.
+  - url: https://docs.apollo.io/reference/organization-enrichment
+    type: APIReference
+    note: GET /organizations/enrich; REST only.
+  - url: https://docs.apollo.io/reference/rate-limits
+    type: Documentation
+    note: Fixed-window rate limiting determined by plan; HTTP REST throttling, no streaming transport.
+  - url: https://docs.apollo.io/llms.txt
+    type: Documentation
+    note: LLM index of all reference pages; lists REST endpoints only, no WebSocket surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Apollo's public API is
+    request/response REST (x-api-key), with asynchronous enrichment results
+    delivered to a consumer-owned webhook_url. No AsyncAPI document was created
+    because there is no server-push transport on Apollo's own API to model.

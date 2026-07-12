@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/apollo-enrich-openapi.yml
+summary:
+  types:
+  - apiKey
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  keyName: x-api-key
+  description: >-
+    Apollo authenticates every request with an API key passed in the
+    `x-api-key` header (for example `x-api-key: YOUR_API_KEY`). Keys are
+    generated in Apollo's developer settings. Some endpoints - such as People
+    Search and listing account users - require a key that has been marked as a
+    master key. API access is gated by plan tier: programmatic access begins on
+    the Professional plan.
+  sources:
+  - openapi/apollo-enrich-openapi.yml
+  - https://docs.apollo.io/reference/authentication
+  - https://docs.apollo.io/docs/create-api-key

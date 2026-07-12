@@ -1,0 +1,181 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Apollo.io
+providerId: apollo-enrich
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Contact Discovery
+- Data Enrichment
+- Sales Intelligence
+- B2B Data
+- Plans
+description: >-
+  Apollo.io sells per-user seats billed monthly or annually, with API access
+  gated by tier. The Free plan and the entry-level Basic plan do NOT include
+  API access - all interaction is manual in the app. Programmatic API access
+  (People/Organization enrichment and search, Contacts, Accounts, Sequences)
+  begins on the Professional plan and continues on Organization and custom
+  Enterprise plans. Data actions additionally consume Apollo credits (email,
+  mobile, and export credits) that vary by plan. Published per-user rates below
+  are grounded to Apollo's pricing page and third-party 2026 breakdowns; verify
+  current numbers and credit allowances at https://www.apollo.io/pricing during
+  reconciliation.
+notes: >-
+  Annual-billing per-user rates: Basic ~$49, Professional ~$79, Organization
+  ~$119. Month-to-month rates are higher (~$59 / $99 / $149). The Organization
+  plan has a team minimum (commonly cited around 3 seats / ~$357+/mo) - single
+  Organization seats are not sold. Credit limits (email/mobile/export) and
+  data enrichment consumption are separate from seat price. API access is the
+  key gate for this catalog entry: it is unavailable on Free and Basic.
+sources:
+- https://www.apollo.io/pricing
+- https://docs.apollo.io/docs/create-api-key
+- https://docs.apollo.io/reference/rate-limits
+plans:
+- id: apollo-free
+  name: Free
+  type: free
+  description: >-
+    Free-forever plan for individuals. Includes limited monthly email/mobile
+    credits and core prospecting in the app. No API access.
+  entries:
+  - label: Seat
+    name: seat
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '0'
+    userMultiplied: true
+  elements:
+  - name: In-App Prospecting
+  - name: Limited Monthly Credits
+  - name: No API Access
+- id: apollo-basic
+  name: Basic
+  type: paid
+  description: >-
+    Entry paid plan with better search filters and higher credit allowances.
+    Still no API access - all data pulls are manual.
+  entries:
+  - label: Seat (annual billing)
+    name: seat_annual
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '49'
+    userMultiplied: true
+  - label: Seat (monthly billing)
+    name: seat_monthly
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '59'
+    userMultiplied: true
+  elements:
+  - name: Advanced Search Filters
+  - name: Buying Intent (basic)
+  - name: No API Access
+- id: apollo-professional
+  name: Professional
+  type: paid
+  description: >-
+    First tier with API access - the relevant plan for programmatic
+    enrichment, search, contacts, accounts, and sequences. Adds unlimited email
+    credits, advanced sequencing, A/B testing, call recording, and premium
+    integrations.
+  entries:
+  - label: Seat (annual billing)
+    name: seat_annual
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '79'
+    userMultiplied: true
+  - label: Seat (monthly billing)
+    name: seat_monthly
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '99'
+    userMultiplied: true
+  elements:
+  - name: API Access
+  - name: Unlimited Email Credits
+  - name: Advanced Sequencing and A/B Testing
+  - name: Premium Integrations
+- id: apollo-organization
+  name: Organization
+  type: paid
+  description: >-
+    Team plan adding SSO, advanced security, and reporting on top of API
+    access. Sold to teams (minimum seat count applies); single seats are not
+    available.
+  entries:
+  - label: Seat (annual billing)
+    name: seat_annual
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '119'
+    userMultiplied: true
+  - label: Seat (monthly billing)
+    name: seat_monthly
+    type: flat
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '149'
+    userMultiplied: true
+  elements:
+  - name: API Access
+  - name: SSO and Advanced Security
+  - name: Advanced Reporting
+  - name: Team Minimum Seats
+- id: apollo-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Custom plan for larger organizations - negotiated credit volumes, higher
+    API rate limits, security review, and dedicated support. Contact Apollo
+    sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Negotiated Credits and Rate Limits
+  - name: Dedicated Support
+  - name: Security and Compliance Review
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
