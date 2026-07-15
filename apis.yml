@@ -189,6 +189,8 @@ apis:
     outreach emails. Turns discovered and enriched contacts into active
     engagement.
 common:
+- type: AgenticAccess
+  url: agentic-access/apollo-enrich-agentic-access.yml
 - type: Authentication
   url: authentication/apollo-enrich-authentication.yml
 - type: GitHubOrganization
