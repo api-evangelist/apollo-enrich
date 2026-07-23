@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: Apollo.io Accounts Sequences API
+  description: 'A working model of the Apollo.io REST API for sales intelligence, contact discovery, and data enrichment. Apollo exposes People Enrichment (single and bulk match), People Search, Organization Enrichment and Search, Contacts and Accounts management, and Sequences (emailer campaigns) over a REST interface at https://api.apollo.io/api/v1. All requests authenticate with an `x-api-key` header; some endpoints (for example People Search and account user listing) require a key marked as a master key. API access is gated by Apollo plan tier - programmatic access begins on the Professional plan.
+
+
+    Grounding note: base URL, the `x-api-key` header, and the core endpoint paths (people/match, people/bulk_match, mixed_people/api_search, organizations/enrich, mixed_companies/search, contacts/search, accounts/search, emailer_campaigns/{id}/add_contact_ids) are taken directly from Apollo''s published reference at docs.apollo.io. Request/response schemas here are modeled from the documented parameters and are illustrative, not exhaustive; consult the live docs for the authoritative field lists.'
+  version: '1.0'
+  contact:
+    name: Apollo.io
+    url: https://www.apollo.io
+  termsOfService: https://www.apollo.io/legal/terms-of-service
+servers:
+- url: https://api.apollo.io/api/v1
+  description: Apollo.io production API
+security:
+- apiKeyAuth: []
+tags:
+- name: Sequences
+  description: Manage sequences (emailer campaigns) and outreach emails.
+paths:
+  /emailer_campaigns/search:
+    post:
+      operationId: searchSequences
+      tags:
+      - Sequences
+      summary: Search for sequences
+      description: Searches sequences (emailer campaigns) in your Apollo account. Path modeled from Apollo's documented Search for Sequences endpoint.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q_name:
+                  type: string
+                page:
+                  type: integer
+                per_page:
+                  type: integer
+      responses:
+        '200':
+          description: A page of matching sequences.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  emailer_campaigns:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sequence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /emailer_campaigns/{id}/add_contact_ids:
+    post:
+      operationId: addContactsToSequence
+      tags:
+      - Sequences
+      summary: Add contacts to a sequence
+      description: Adds one or more contacts to a sequence (emailer campaign) so they enter the outreach steps. Provide the contact ids and the sending configuration (email account and mailbox).
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The Apollo sequence (emailer campaign) id.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contact_ids:
+                  type: array
+                  items:
+                    type: string
+                emailer_campaign_id:
+                  type: string
+                send_email_from_email_account_id:
+                  type: string
+                sequence_active_in_other_campaigns:
+                  type: boolean
+      responses:
+        '200':
+          description: The contacts were added to the sequence.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contacts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    RateLimited:
+      description: Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Sequence:
+      type: object
+      description: A sequence (emailer campaign) used for multi-step outreach.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        active:
+          type: boolean
+        num_steps:
+          type: integer
+    Contact:
+      type: object
+      description: A contact saved inside your Apollo account.
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        contact_stage_id:
+          type: string
+        account_id:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_code:
+          type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Apollo API key passed in the `x-api-key` header on every request. Generate keys in the Apollo developer settings. Some endpoints (for example People Search) require a key marked as a master key.
