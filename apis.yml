@@ -11,7 +11,20 @@ description: Apollo.io is a sales intelligence and engagement platform built on 
   authenticated with an x-api-key header and is gated behind Apollo's paid
   plans (API access begins on the Professional tier; some endpoints require a
   master API key).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apollo-enrich.png
 tags:
 - Contact Discovery
 - Data Enrichment
@@ -25,169 +38,230 @@ created: '2026-07-11'
 modified: '2026-07-11'
 specificationVersion: '0.19'
 apis:
-- aid: apollo-enrich:apollo-people-enrichment-api
-  name: Apollo People Enrichment API
-  tags:
-  - Contact Discovery
-  - Data Enrichment
-  - People Enrichment
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: apollo-enrich:apollo-enrich-accounts-api
+  name: Apollo.io Accounts API
+  description: Manage accounts (companies) saved to your Apollo team.
   humanURL: https://docs.apollo.io/reference/people-enrichment
   baseURL: https://api.apollo.io/api/v1
-  properties:
-  - url: https://docs.apollo.io/docs/enrich-people-data
-    type: Documentation
-  - url: https://docs.apollo.io/reference/people-enrichment
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Enrich a single person (POST /people/match) or up to ten people in
-    one call (POST /people/bulk_match) - resolving names, titles, employment,
-    verified work emails, and (with reveal flags) personal emails and phone
-    numbers. Consumes Apollo credits per enriched record when data is returned.
-- aid: apollo-enrich:apollo-people-search-api
-  name: Apollo People Search API
-  tags:
-  - Prospecting
-  - Sales Intelligence
-  - People Search
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.apollo.io/reference/people-api-search
-  baseURL: https://api.apollo.io/api/v1
-  properties:
-  - url: https://docs.apollo.io/docs/find-people-using-filters
-    type: Documentation
-  - url: https://docs.apollo.io/reference/people-api-search
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Find prospects across Apollo's B2B database (POST
-    /mixed_people/api_search) with filters for job titles, seniorities,
-    locations, company attributes, technologies, and email status. Paginates up
-    to 50,000 records (100 per page, up to 500 pages). Requires a master API
-    key; does not return emails or phone numbers - pair with enrichment to
-    reveal contact details.
-- aid: apollo-enrich:apollo-organization-enrichment-api
-  name: Apollo Organization Enrichment API
-  tags:
-  - Data Enrichment
-  - Company Data
-  - Firmographics
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.apollo.io/reference/organization-enrichment
-  baseURL: https://api.apollo.io/api/v1
-  properties:
-  - url: https://docs.apollo.io/reference/organization-enrichment
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Enrich one company by domain, name, LinkedIn, or website (GET
-    /organizations/enrich) or up to ten at once (POST
-    /organizations/bulk_enrich), returning firmographics such as industry,
-    employee count, revenue, location, and technologies. Company job postings
-    are available via a related endpoint.
-- aid: apollo-enrich:apollo-organization-search-api
-  name: Apollo Organization Search API
-  tags:
-  - Sales Intelligence
-  - B2B Data
-  - Company Search
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.apollo.io/reference/organization-search
-  baseURL: https://api.apollo.io/api/v1
-  properties:
-  - url: https://docs.apollo.io/reference/organization-search
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Search Apollo's company database (POST /mixed_companies/search)
-    with filters for domains, employee count, location, revenue, technology
-    stack, funding, and active job postings. Paginates up to 50,000 records
-    (100 per page, up to 500 pages); consumes credits per page when data is
-    returned.
-- aid: apollo-enrich:apollo-contacts-api
-  name: Apollo Contacts API
-  tags:
-  - Contacts
-  - CRM
-  - Contact Discovery
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.apollo.io/reference/search-for-contacts
-  baseURL: https://api.apollo.io/api/v1
-  properties:
-  - url: https://docs.apollo.io/reference/search-for-contacts
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Manage contacts saved inside your Apollo account - search (POST
-    /contacts/search), create (POST /contacts), update (PUT /contacts/{id}),
-    and bulk-create contacts, plus list contact stages. Contacts are the people
-    you have added to Apollo, distinct from raw database search results.
-- aid: apollo-enrich:apollo-accounts-api
-  name: Apollo Accounts API
   tags:
   - Accounts
-  - CRM
-  - B2B Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.apollo.io/reference/search-for-accounts
-  baseURL: https://api.apollo.io/api/v1
   properties:
-  - url: https://docs.apollo.io/reference/search-for-accounts
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Manage accounts (companies saved to your Apollo team) - search
-    (POST /accounts/search), create (POST /accounts), update (PUT
-    /accounts/{id}), and bulk-create accounts. Accounts are the company records
-    your team tracks, distinct from the broader organization database.
-- aid: apollo-enrich:apollo-sequences-api
-  name: Apollo Sequences API
+  - type: OpenAPI
+    url: openapi/apollo-enrich-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-enrich:apollo-enrich-contacts-api
+  name: Apollo.io Contacts API
+  description: Manage contacts saved in your Apollo account.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
   tags:
-  - Sales Engagement
-  - Outreach
-  - Sequences
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.apollo.io/reference/add-contacts-to-sequence
-  baseURL: https://api.apollo.io/api/v1
+  - Contacts
   properties:
-  - url: https://docs.apollo.io/reference/add-contacts-to-sequence
-    type: APIReference
-  - url: openapi/apollo-enrich-openapi.yml
-    type: OpenAPI
-  - url: collections/apollo-enrich.postman_collection.json
-    type: PostmanCollection
-  - url: collections/apollo-enrich.opencollection.json
-    type: OpenCollection
-  description: Drive multi-step outreach through Apollo sequences (emailer
-    campaigns) - create and search sequences and add contacts to a sequence
-    (POST /emailer_campaigns/{id}/add_contact_ids), plus draft, send, and search
-    outreach emails. Turns discovered and enriched contacts into active
-    engagement.
+  - type: OpenAPI
+    url: openapi/apollo-enrich-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-enrich:apollo-enrich-organization-enrichment-api
+  name: Apollo.io Organization Enrichment API
+  description: Match and enrich company records, single or in bulk.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - Organization Enrichment
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-organization-enrichment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-enrich:apollo-enrich-organization-search-api
+  name: Apollo.io Organization Search API
+  description: Search Apollo's company database.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - Organization Search
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-organization-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-enrich:apollo-enrich-people-enrichment-api
+  name: Apollo.io People Enrichment API
+  description: Match and enrich person records, single or in bulk.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - People Enrichment
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-people-enrichment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-enrich:apollo-enrich-people-search-api
+  name: Apollo.io People Search API
+  description: Search Apollo's people database for prospects.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - People Search
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-people-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
+- aid: apollo-enrich:apollo-enrich-sequences-api
+  name: Apollo.io Sequences API
+  description: Manage sequences (emailer campaigns) and outreach emails.
+  humanURL: https://docs.apollo.io/reference/people-enrichment
+  baseURL: https://api.apollo.io/api/v1
+  tags:
+  - Sequences
+  properties:
+  - type: OpenAPI
+    url: openapi/apollo-enrich-sequences-api-openapi.yml
+  - type: Documentation
+    url: https://docs.apollo.io/docs/enrich-people-data
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-enrichment
+  - type: PostmanCollection
+    url: collections/apollo-enrich.postman_collection.json
+  - type: OpenCollection
+    url: collections/apollo-enrich.opencollection.json
+  - type: Documentation
+    url: https://docs.apollo.io/docs/find-people-using-filters
+  - type: APIReference
+    url: https://docs.apollo.io/reference/people-api-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-enrichment
+  - type: APIReference
+    url: https://docs.apollo.io/reference/organization-search
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-contacts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/search-for-accounts
+  - type: APIReference
+    url: https://docs.apollo.io/reference/add-contacts-to-sequence
 common:
 - type: AgenticAccess
   url: agentic-access/apollo-enrich-agentic-access.yml
