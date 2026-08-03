@@ -1,0 +1,26 @@
+{
+  "provider": "apollo-enrich",
+  "sources": [
+    "apollo-enrich-accounts-api-openapi.yml",
+    "apollo-enrich-contacts-api-openapi.yml",
+    "apollo-enrich-organization-enrichment-api-openapi.yml",
+    "apollo-enrich-organization-search-api-openapi.yml",
+    "apollo-enrich-people-enrichment-api-openapi.yml",
+    "apollo-enrich-people-search-api-openapi.yml",
+    "apollo-enrich-sequences-api-openapi.yml"
+  ],
+  "outputs": [
+    "apollo-enrich-accounts-api-openapi.yml",
+    "apollo-enrich-contacts-api-openapi.yml",
+    "apollo-enrich-organization-enrichment-api-openapi.yml",
+    "apollo-enrich-organization-search-api-openapi.yml",
+    "apollo-enrich-people-enrichment-api-openapi.yml",
+    "apollo-enrich-people-search-api-openapi.yml",
+    "apollo-enrich-sequences-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
