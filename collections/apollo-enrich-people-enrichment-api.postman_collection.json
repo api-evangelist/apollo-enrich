@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "8d0392d0-f6bb-412b-a602-a4ccb75e931f",
+      "name": "People Enrichment",
+      "description": {
+        "content": "Match and enrich person records, single or in bulk.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42d49183-0362-41c1-8025-5dcd1ca46d30",
+          "name": "Enrich a single person",
+          "request": {
+            "name": "Enrich a single person",
+            "description": {
+              "content": "Enriches data for one person. Provide any combination of identifiers (name, email, domain, LinkedIn URL, Apollo id). Consumes Apollo credits per enriched record when data is returned. Set reveal flags to unlock personal emails or phone numbers (phone/waterfall reveals require a webhook_url).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "people",
+                "match"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"hashed_email\": \"<string>\",\n  \"organization_name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"id\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"run_waterfall_email\": \"<boolean>\",\n  \"run_waterfall_phone\": \"<boolean>\",\n  \"webhook_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "285b1b7c-b60b-4e15-a599-2ae5b2b99fd2",
+              "name": "The matched and enriched person.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "people",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"hashed_email\": \"<string>\",\n  \"organization_name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"id\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"run_waterfall_email\": \"<boolean>\",\n  \"run_waterfall_phone\": \"<boolean>\",\n  \"webhook_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"person\": {\n    \"id\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"name\": \"string\",\n    \"title\": \"string\",\n    \"seniority\": \"string\",\n    \"email\": \"string\",\n    \"email_status\": \"string\",\n    \"linkedin_url\": \"string\",\n    \"phone_numbers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"organization\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"website_url\": \"string\",\n      \"primary_domain\": \"string\",\n      \"linkedin_url\": \"string\",\n      \"industry\": \"string\",\n      \"estimated_num_employees\": 8510,\n      \"annual_revenue\": 28.944475555514604,\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60afb79f-17e9-49b1-8f88-d91939ed1e7a",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "people",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"hashed_email\": \"<string>\",\n  \"organization_name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"id\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"run_waterfall_email\": \"<boolean>\",\n  \"run_waterfall_phone\": \"<boolean>\",\n  \"webhook_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c54d8bef-4f25-4d56-ba52-6ab945100c49",
+              "name": "Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "people",
+                    "match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"hashed_email\": \"<string>\",\n  \"organization_name\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"id\": \"<string>\",\n  \"linkedin_url\": \"<string>\",\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"run_waterfall_email\": \"<boolean>\",\n  \"run_waterfall_phone\": \"<boolean>\",\n  \"webhook_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84ce5da9-7b16-4f4f-8e97-4aab3af2daac",
+          "name": "Bulk enrich people",
+          "request": {
+            "name": "Bulk enrich people",
+            "description": {
+              "content": "Enriches data for up to ten people in a single call. Pass an array of person records under `details`. Consumes Apollo credits per enriched record returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "people",
+                "bulk_match"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"details\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ac76768-02f3-432e-a25a-990833f621c3",
+              "name": "The matched people.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "people",
+                    "bulk_match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"details\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"seniority\": \"string\",\n      \"email\": \"string\",\n      \"email_status\": \"string\",\n      \"linkedin_url\": \"string\",\n      \"phone_numbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"organization\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"website_url\": \"string\",\n        \"primary_domain\": \"string\",\n        \"linkedin_url\": \"string\",\n        \"industry\": \"string\",\n        \"estimated_num_employees\": 5331,\n        \"annual_revenue\": 2578.404322643788,\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"seniority\": \"string\",\n      \"email\": \"string\",\n      \"email_status\": \"string\",\n      \"linkedin_url\": \"string\",\n      \"phone_numbers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"organization\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"website_url\": \"string\",\n        \"primary_domain\": \"string\",\n        \"linkedin_url\": \"string\",\n        \"industry\": \"string\",\n        \"estimated_num_employees\": 6825,\n        \"annual_revenue\": 4584.858125853349,\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62462326-f43b-46ae-80cf-b75ae4f6257c",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "people",
+                    "bulk_match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"details\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f6a606c-1e2c-4677-ab98-9c46d5bcb325",
+              "name": "Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "people",
+                    "bulk_match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reveal_personal_emails\": \"<boolean>\",\n  \"reveal_phone_number\": \"<boolean>\",\n  \"details\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"hashed_email\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"id\": \"<string>\",\n      \"linkedin_url\": \"<string>\",\n      \"reveal_personal_emails\": \"<boolean>\",\n      \"reveal_phone_number\": \"<boolean>\",\n      \"run_waterfall_email\": \"<boolean>\",\n      \"run_waterfall_phone\": \"<boolean>\",\n      \"webhook_url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.apollo.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "38ed2ee6-be55-4977-9ab7-1fa9736f28cd",
+    "name": "Apollo.io Accounts People Enrichment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A working model of the Apollo.io REST API for sales intelligence, contact discovery, and data enrichment. Apollo exposes People Enrichment (single and bulk match), People Search, Organization Enrichment and Search, Contacts and Accounts management, and Sequences (emailer campaigns) over a REST interface at https://api.apollo.io/api/v1. All requests authenticate with an `x-api-key` header; some endpoints (for example People Search and account user listing) require a key marked as a master key. API access is gated by Apollo plan tier - programmatic access begins on the Professional plan.\n\nGrounding note: base URL, the `x-api-key` header, and the core endpoint paths (people/match, people/bulk_match, mixed_people/api_search, organizations/enrich, mixed_companies/search, contacts/search, accounts/search, emailer_campaigns/{id}/add_contact_ids) are taken directly from Apollo's published reference at docs.apollo.io. Request/response schemas here are modeled from the documented parameters and are illustrative, not exhaustive; consult the live docs for the authoritative field lists.\n\nContact Support:\n Name: Apollo.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "1a589636-44bf-4192-99dc-e3b41e9f2689",
+      "name": "Organization Search",
+      "description": {
+        "content": "Search Apollo's company database.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8b9b83a-7c81-4ae8-a5b9-385fdec92909",
+          "name": "Search for organizations",
+          "request": {
+            "name": "Search for organizations",
+            "description": {
+              "content": "Searches Apollo's company database. Consumes Apollo credits per page when data is returned. Paginates up to 50,000 records (100 per page, up to 500 pages).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mixed_companies",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"q_organization_domains_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_num_employees_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"revenue_range\": {\n    \"min\": \"<integer>\",\n    \"max\": \"<integer>\"\n  },\n  \"currently_using_any_of_technology_uids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9996773e-4981-4fc7-94ad-061a09f0c7be",
+              "name": "A page of matching organizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mixed_companies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"q_organization_domains_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_num_employees_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"revenue_range\": {\n    \"min\": \"<integer>\",\n    \"max\": \"<integer>\"\n  },\n  \"currently_using_any_of_technology_uids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organizations\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"website_url\": \"string\",\n      \"primary_domain\": \"string\",\n      \"linkedin_url\": \"string\",\n      \"industry\": \"string\",\n      \"estimated_num_employees\": 6109,\n      \"annual_revenue\": 9696.580003529827,\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"website_url\": \"string\",\n      \"primary_domain\": \"string\",\n      \"linkedin_url\": \"string\",\n      \"industry\": \"string\",\n      \"estimated_num_employees\": 4913,\n      \"annual_revenue\": 4885.812560901526,\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 843,\n    \"per_page\": 7914,\n    \"total_entries\": 4172,\n    \"total_pages\": 4276\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a65cca29-a0fe-40d2-9522-2fc57e99b54e",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mixed_companies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"q_organization_domains_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_num_employees_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"revenue_range\": {\n    \"min\": \"<integer>\",\n    \"max\": \"<integer>\"\n  },\n  \"currently_using_any_of_technology_uids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2926666e-8d41-40d7-b213-cb397d7ea8b3",
+              "name": "Rate limit exceeded. Apollo uses fixed-window rate limiting; limits vary by plan and are reported via response headers and the API usage stats endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mixed_companies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"q_organization_domains_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_num_employees_ranges\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"revenue_range\": {\n    \"min\": \"<integer>\",\n    \"max\": \"<integer>\"\n  },\n  \"currently_using_any_of_technology_uids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.apollo.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b3cd7613-4889-49fb-957f-70614ae554b7",
+    "name": "Apollo.io Accounts Organization Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A working model of the Apollo.io REST API for sales intelligence, contact discovery, and data enrichment. Apollo exposes People Enrichment (single and bulk match), People Search, Organization Enrichment and Search, Contacts and Accounts management, and Sequences (emailer campaigns) over a REST interface at https://api.apollo.io/api/v1. All requests authenticate with an `x-api-key` header; some endpoints (for example People Search and account user listing) require a key marked as a master key. API access is gated by Apollo plan tier - programmatic access begins on the Professional plan.\n\nGrounding note: base URL, the `x-api-key` header, and the core endpoint paths (people/match, people/bulk_match, mixed_people/api_search, organizations/enrich, mixed_companies/search, contacts/search, accounts/search, emailer_campaigns/{id}/add_contact_ids) are taken directly from Apollo's published reference at docs.apollo.io. Request/response schemas here are modeled from the documented parameters and are illustrative, not exhaustive; consult the live docs for the authoritative field lists.\n\nContact Support:\n Name: Apollo.io",
+      "type": "text/plain"
+    }
+  }
+}

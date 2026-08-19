@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apollo.io Accounts Organization Enrichment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Enrichment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrich a single organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apollo.io/api/v1/organizations/enrich",
+            "params": [
+              {
+                "name": "domain",
+                "value": "apollo.io",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "linkedin_url",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "website",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Enriches data for one company. Provide at least one of `domain`, `name`, `linkedin_url`, or `website`."
+        },
+        {
+          "info": {
+            "name": "Bulk enrich organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/organizations/bulk_enrich",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enriches data for up to ten companies in a single call. Path modeled from Apollo's documented Bulk Organization Enrichment endpoint; confirm the exact request shape against the live reference."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

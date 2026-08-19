@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apollo.io Accounts Sequences API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sequences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for sequences",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/emailer_campaigns/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches sequences (emailer campaigns) in your Apollo account. Path modeled from Apollo's documented Search for Sequences endpoint."
+        },
+        {
+          "info": {
+            "name": "Add contacts to a sequence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/emailer_campaigns/:id/add_contact_ids",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Apollo sequence (emailer campaign) id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more contacts to a sequence (emailer campaign) so they enter the outreach steps. Provide the contact ids and the sending configuration (email account and mailbox)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

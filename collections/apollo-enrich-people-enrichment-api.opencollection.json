@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apollo.io Accounts People Enrichment API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "People Enrichment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrich a single person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/people/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enriches data for one person. Provide any combination of identifiers (name, email, domain, LinkedIn URL, Apollo id). Consumes Apollo credits per enriched record when data is returned. Set reveal flags to unlock personal emails or phone numbers (phone/waterfall reveals require a webhook_url)."
+        },
+        {
+          "info": {
+            "name": "Bulk enrich people",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apollo.io/api/v1/people/bulk_match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enriches data for up to ten people in a single call. Pass an array of person records under `details`. Consumes Apollo credits per enriched record returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
