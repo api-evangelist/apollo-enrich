@@ -44,6 +44,8 @@ apis:
   humanURL: https://docs.apollo.io/reference/people-enrichment
   baseURL: https://api.apollo.io/api/v1
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
