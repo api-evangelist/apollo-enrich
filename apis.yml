@@ -11,6 +11,18 @@ description: Apollo.io is a sales intelligence and engagement platform built on 
   authenticated with an x-api-key header and is gated behind Apollo's paid
   plans (API access begins on the Professional tier; some endpoints require a
   master API key).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
